@@ -1,1 +1,17 @@
+Project
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = NA, 
+                      message = FALSE, warning = FALSE)
+```
+
+#### Load packages and data
+
+```{r packages, echo = F}
+library(tidyverse)
+library(broom)
+library(class)
+library(infer)
+data <- read_csv("data.csv")
+```
 
