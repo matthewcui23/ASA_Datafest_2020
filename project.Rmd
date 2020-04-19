@@ -104,3 +104,61 @@ ggplot(data = cases_use_new,
 ```
 abline(h=200, col = "Red", lty = 5) *Add lines later on.
 
+
+## Marcus's Stuff
+
+```{r public-info}
+data1 <- data %>%
+  filter(CountryName == "Taiwan" | CountryName ==  "South Korea") %>%
+  select(CountryName, Date, `S5_Public information campaigns`, `S6_Restrictions on internal movement`,`S7_International travel controls`)
+
+pubinfo <- data1 %>%
+  filter(`S5_Public information campaigns` == 1) %>%
+  select(CountryName, Date, `S5_Public information campaigns`) %>%
+  group_by(CountryName) %>%
+  slice(1)
+pubinfo
+
+recrestrict <- data1 %>%
+  filter(`S6_Restrictions on internal movement` == 1) %>%
+  select(CountryName, Date, `S6_Restrictions on internal movement`) %>%
+  group_by(CountryName) %>%
+  
+  slice(1)
+recrestrict
+
+restrict <- data1 %>%
+  filter(`S6_Restrictions on internal movement` == 2) %>%
+  group_by(CountryName) %>%
+  select(CountryName, Date, `S6_Restrictions on internal movement`) %>%
+  slice(1)
+restrict
+
+travelscreening <- data1 %>%
+  filter(`S7_International travel controls` == 1) %>%
+  group_by(CountryName) %>%
+  select(CountryName, Date, `S7_International travel controls`) %>%
+  slice(1)
+travelscreening
+
+highriskquarantine <- data1 %>%
+  filter(`S7_International travel controls` == 2) %>%
+  group_by(CountryName) %>%
+  select(CountryName, Date, `S7_International travel controls`) %>%
+  slice(1)
+highriskquarantine
+
+highriskban <- data1 %>%
+  filter(`S7_International travel controls` == 3) %>%
+  group_by(CountryName) %>%
+  select(CountryName, Date, `S7_International travel controls`) %>%
+  slice(1)
+highriskban
+```
+
+Public Info Campaign Start Dates. South Korea: 01/20, Taiwan: 01/20
+Recommended Movement Restriction. South Korea: 02/23, Taiwan: NA
+Restrict Movement. South Korea: 03/21, Taiwan: NA
+International Travel Screening. South Korea: NA, Taiwan: 02/07
+Quarantine on high-risk regions. South Korea: NA, Taiwan: 02/24
+Ban on high-risk regions. South Korea: 02/03, Taiwan: 02/23
