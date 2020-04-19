@@ -14,4 +14,63 @@ library(class)
 library(infer)
 data <- read_csv("data.csv")
 ```
+Y'all, the data file is just called data
+
+
+## Larry's stuff
+
+```{r Filter to 3 countries}
+countries <- c("United States", "China", "Italy")
+
+data_use <- data %>% 
+  filter(
+    CountryName %in% countries
+  )
+data_use
+```
+
+```{r Finding out when these countries closed school & recommended closing}
+data_use %>% 
+  filter(
+    `S1_School closing` == 1
+  )
+
+data_use %>%
+  filter(
+    `S1_School closing` == 2
+  )
+```
+
+Recommended Closing schools:
+USA only one out of them that recommended closing before requiring closing, during 20200303
+
+Required Closing schools:
+CHN 20200126 first day
+ITA 20200223 first day
+USA 20200305 first day
+
+```{r Finding out when these countries closed workplaces & recommended closing}
+data_use %>% 
+  filter(
+    `S2_Workplace closing` == 1
+  )
+
+data_use %>%
+  filter(
+    `S2_Workplace closing` == 2
+  )
+```
+
+Recommended Closing workplaces:
+CHN 20200403 first day
+
+Required Closing workplaces:
+CHN 20200126 first day
+ITA 20200222 first day
+USA 20200319 first day
+
+
+
+
+
 
