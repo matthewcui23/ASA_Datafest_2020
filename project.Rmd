@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 Project
 
 ```{r setup, include=FALSE}
@@ -12,9 +17,12 @@ library(tidyverse)
 library(broom)
 library(class)
 library(infer)
+library(lubridate)
+library(scales)
 data <- read_csv("data.csv")
+cases <- read_csv("cases.csv")
 ```
-Y'all, the data file is just called data
+Y'all, the data file is just called data and cases is cases.
 
 
 ## Larry's stuff
@@ -69,8 +77,30 @@ CHN 20200126 first day
 ITA 20200222 first day
 USA 20200319 first day
 
+```{r Filter cases list to 3 countries}
+countries <- c("United States", "China", "Italy")
 
+cases_use <- cases %>% 
+  filter(
+    location %in% countries
+  )
+cases_use
+```
 
+```{r Histogram}
+cases_use_new <- cases_use %>% 
+  filter(
+    date == as.Date("2020-04-18")
+  )
 
-
+ggplot(data = cases_use_new, 
+  aes(x = location, y = total_cases, fill = location)) +
+  geom_bar(stat = "identity") +
+  scale_y_continuous(breaks=seq(0, 700000, 100000)) +
+  scale_y_continuous(labels = comma) +
+  labs(title = "When did these Countries Stop School/Work?",
+       x = "Countries", y = "COVID-19 Cases") +
+  theme_bw()
+```
+abline(h=200, col = "Red", lty = 5) *Add lines later on.
 
