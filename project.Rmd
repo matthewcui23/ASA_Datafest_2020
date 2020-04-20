@@ -183,3 +183,7 @@ Restrict Movement. South Korea: 03/21, Taiwan: NA
 International Travel Screening. South Korea: NA, Taiwan: 02/07
 Quarantine on high-risk regions. South Korea: NA, Taiwan: 02/24
 Ban on high-risk regions. South Korea: 02/03, Taiwan: 02/23
+
+
+
+
