@@ -184,6 +184,37 @@ International Travel Screening. South Korea: NA, Taiwan: 02/07
 Quarantine on high-risk regions. South Korea: NA, Taiwan: 02/24
 Ban on high-risk regions. South Korea: 02/03, Taiwan: 02/23
 
+## Kehan's stuff
+```{r}
+MONEYS<-data_use %>% 
+  group_by(CountryName) %>% 
+  filter(`S8_Fiscal measures`>0) %>% 
+  summarise(sum(`S8_Fiscal measures`)) 
 
+names(MONEYS)[names(MONEYS) ==  "sum(`S8_Fiscal measures`)"] <- "Total_Fiscal_Measures"
+
+MONEYS
+```
+
+
+```{r}
+ggplot(data = MONEYS, 
+  aes(x = CountryName, y = Total_Fiscal_Measures, fill = CountryName)) +
+  geom_bar(stat = "identity") +
+  scale_y_continuous(breaks=seq(0, 700000, 100000)) +
+  scale_y_continuous(labels = comma) +
+  labs(title = "Total Fiscal Measures",
+       x = "Countries", y = "COVID-19 Cases") +
+  theme_bw()
+```
+
+```{r}
+data_use %>% 
+  filter(`S8_Fiscal measures`>0) %>% 
+  arrange(Date) %>% 
+  select(CountryName,`S8_Fiscal measures`,Date)
+  
+```
+I WANT TO MAKE TIME MODEL GIF THING
 
 
